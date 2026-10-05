@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Clef · Local playground</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#213b36;background:#f4f5ef;font-size:15px;line-height:1.5}
+    *{box-sizing:border-box}body{margin:0}main{max-width:1280px;margin:auto;padding:38px 38px 50px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-bottom:28px}.brand{display:flex;gap:14px;align-items:center}
+    .mark{background:#214d42;color:#fff;width:48px;height:48px;display:grid;place-items:center;border-radius:16px;font-family:Georgia,serif;font-size:34px}
+    h1{font-family:Georgia,serif;font-size:34px;font-weight:500;line-height:1.1;margin:0 0 6px}p{margin:0}.subtitle,.muted{color:#6c7c73;font-size:13px}.badge{font-size:12px;border:1px solid #dce4d8;border-radius:20px;padding:7px 13px;background:#fff;white-space:nowrap}.dot{color:#238266;margin-right:5px}
+    .intro{font-size:18px;max-width:780px;margin-bottom:26px;line-height:1.6}.intro small{display:block;color:#6c7c73;font-size:13px;margin-top:6px}
+    .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;align-items:start}.panel{border:1px solid #dfe4d9;background:#fff;border-radius:20px;padding:25px;box-shadow:0 5px 16px #30443204}
+    .sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:19px}h2{font-size:18px;font-weight:600;margin:0}label{font-weight:600;display:block;margin:17px 0 7px}.labelrow{display:flex;justify-content:space-between;align-items:baseline}.labelrow span{font-size:12px;color:#7c867d}
+    select{font:inherit;font-size:12px;color:#385347;border:1px solid #dce4d8;background:#f8faf5;border-radius:9px;padding:9px;max-width:58%}
+    textarea{font:inherit;color:#2b4038;background:#fcfdf9;border:1px solid #dfe5da;border-radius:10px;padding:12px;width:100%;resize:vertical;outline:none;line-height:1.6}textarea:focus{border-color:#56997e;box-shadow:0 0 0 3px #edf4ee}#state{min-height:139px}#questions{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;min-height:290px;tab-size:2}
+    .help{font-size:12px;color:#718075;margin-top:7px}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#365b48;background:#eef3ea;padding:2px 4px;border-radius:4px}.actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:20px}button{font:inherit;border:0;border-radius:10px;background:#245c47;color:white;font-weight:600;padding:12px 22px;cursor:pointer}button:hover{background:#1a4836}button:disabled{opacity:.55;cursor:wait}
+    .resultpanel{min-height:590px}.status{font-size:12px;color:#778276}.empty{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:390px;text-align:center;color:#78857a;gap:12px}.empty .glyph{font-size:38px;color:#83a290}.empty strong{font-size:17px;color:#486350;font-weight:500}.empty p{max-width:250px;font-size:13px}
+    #error{background:#fff3ed;border:1px solid #f0d9ca;color:#954b2f;border-radius:10px;padding:13px;margin-bottom:16px;font-size:13px;white-space:pre-wrap}.answer{border-top:1px solid #ebeee5;padding:19px 0}.answer:first-child{border-top:0;padding-top:1px}.answerhead{display:flex;justify-content:space-between;gap:12px;align-items:center}.answer h3{font-size:14px;margin:0;font-weight:600;overflow-wrap:anywhere}.type{font-size:10px;text-transform:uppercase;letter-spacing:.8px;background:#f0f3ed;color:#70806e;border-radius:5px;padding:3px 7px}.value{font-family:Georgia,serif;font-size:27px;color:#235b42;margin:8px 0 4px;overflow-wrap:anywhere}.definition{color:#728074;font-size:12px;margin-bottom:13px}.prob{margin:10px 0}.probtext{display:flex;justify-content:space-between;gap:14px;font-size:12px;margin-bottom:5px}.option{overflow-wrap:anywhere}.track{height:6px;background:#edf1e9;border-radius:8px;overflow:hidden}.fill{height:100%;background:#8ab59b;border-radius:8px}.prob.winner .fill{background:#2c7957}
+    .metrics{padding:12px 0;border-top:1px solid #ebeee5;font-size:12px;color:#6b7e70;display:flex;flex-wrap:wrap;gap:16px}details{border-top:1px solid #ebeee5;padding-top:14px;margin-top:3px}summary{font-size:12px;color:#526e5c;cursor:pointer}pre{font-size:11px;line-height:1.6;overflow:auto;background:#f7f9f3;padding:12px;border-radius:8px;max-height:400px;color:#4b6250}footer{margin-top:22px;color:#7f897f;font-size:11px;text-align:center}
+    [hidden]{display:none!important}@media(max-width:800px){main{padding:24px 18px}.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-wrap:wrap}.panel{padding:20px}.resultpanel{min-height:300px}.empty{min-height:210px}.intro{font-size:16px}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="brand"><div class="mark" aria-hidden="true">c</div><div><h1>Clef playground</h1><p class="subtitle">Structured decisions, running on your Mac.</p></div></div><div class="badge"><span class="dot">●</span> Local · 8-bit MLX community conversion</div></header>
+  <p class="intro">Give Clef a situation and a set of questions. See how it weighs each allowed answer.<small>Cloudflare Clef · 27B · Text and JSON input · All inference stays on this Mac</small></p>
+  <div class="grid">
+    <section class="panel" aria-labelledby="input-heading">
+      <div class="sectionhead"><h2 id="input-heading">Your input</h2><select id="examples" aria-label="Load an example"><option value="">Load an example…</option></select></div>
+      <div class="labelrow"><label for="state">State</label><span>The situation to evaluate</span></div>
+      <textarea id="state" spellcheck="false">Our checkout has returned payment errors for every customer for the past 45 minutes. No orders are going through.</textarea>
+      <div class="labelrow"><label for="questions">Questions</label><span>Editable JSON schema</span></div>
+      <textarea id="questions" spellcheck="false"></textarea>
+      <p class="help"><code>choice</code> picks an option · <code>score</code> weighs ordered levels · <code>noul</code> estimates probability of true</p>
+      <div class="actions"><span class="muted" id="ready">Connecting…</span><button id="run" disabled>Run decision →</button></div>
+      <p class="help">Up to 16,384 input tokens. Inputs that exceed the limit are rejected, never truncated. The first run may be slower.</p>
+    </section>
+    <section class="panel resultpanel" aria-labelledby="result-heading" aria-live="polite">
+      <div class="sectionhead"><h2 id="result-heading">Decision</h2><span class="status" id="status">Ready when you are</span></div>
+      <div id="error" role="alert" hidden></div>
+      <div id="empty" class="empty"><div class="glyph" aria-hidden="true">≋</div><strong>A decision, with probabilities.</strong><p>Run your input to inspect every field and its available options.</p></div>
+      <div id="answers"></div>
+      <div class="metrics" id="metrics" hidden></div>
+      <details id="rawdetails" hidden><summary>Raw response</summary><pre id="raw"></pre></details>
+    </section>
+  </div>
+  <footer>Community MLX conversion of Cloudflare/clef. Probabilities describe model output and are not guarantees.</footer>
+</main>
+<script>
+  const $ = id => document.getElementById(id);
+  const defaults = {
+    team: {type: 'choice', instructions: 'Which team should handle this?', criteria: {billing: 'Invoices, refunds, and account charges', technical: 'Service outages, bugs, and technical failures'}},
+    urgency: {type: 'score', instructions: 'How urgently should this be addressed?', criteria: ['Can wait', 'This week', 'Today', 'Immediately']},
+    outage: {type: 'noul', instructions: 'Is the checkout service currently unavailable?'}
+  };
+  $('questions').value = JSON.stringify(defaults, null, 2);
+  let exampleData = [];
+  let healthy = false;
+  function node(tag, cls, text) {const el = document.createElement(tag); if (cls) el.className = cls; if (text !== undefined) el.textContent = text; return el;}
+  function description(value) {return typeof value === 'string' ? value : JSON.stringify(value);}
+  function render(data, schema, elapsed) {
+    $('answers').replaceChildren();
+    for (const [id, answer] of Object.entries(data.answers)) {
+      const card = node('article', 'answer');
+      const heading = node('div', 'answerhead'); heading.append(node('h3', '', id), node('span', 'type', answer.type)); card.append(heading);
+      let value, detail, probabilities;
+      if (answer.type === 'noul') {
+        value = `${(answer.noul * 100).toFixed(1)}% true`;
+        detail = 'Probability that the proposition is true';
+        probabilities = {true: answer.noul, false: 1 - answer.noul};
+      } else if (answer.type === 'score') {
+        const last = Object.keys(answer.legend).length - 1;
+        value = `${answer.score.toFixed(2)} / ${last}`;
+        detail = 'Expected score across ordered levels (starting at 0)';
+        probabilities = answer.probabilities;
+      } else {
+        value = answer.choice; detail = `${(answer.confidence * 100).toFixed(1)}% probability for the selected option`; probabilities = answer.probabilities;
+      }
+      card.append(node('div', 'value', value), node('div', 'definition', detail));
+      const maximum = Math.max(...Object.values(probabilities));
+      for (const [option, probability] of Object.entries(probabilities)) {
+        const row = node('div', `prob${probability === maximum ? ' winner' : ''}`);
+        const labels = node('div', 'probtext');
+        const criteria = answer.legend?.[option] ?? schema[id]?.criteria?.[option];
+        const label = answer.type === 'score' ? `${option} · ${description(criteria)}` : option;
+        const name = node('span', 'option', label); if (criteria) name.title = description(criteria);
+        labels.append(name, node('span', '', `${(probability * 100).toFixed(1)}%`));
+        const track = node('div', 'track'); const fill = node('div', 'fill'); fill.style.width = `${Math.max(0, Math.min(100, probability * 100))}%`; track.append(fill); row.append(labels, track); card.append(row);
+      }
+      $('answers').append(card);
+    }
+    $('metrics').replaceChildren(node('span', '', `${data.usage.latency_ms.toLocaleString()} ms inference`), node('span', '', `${data.usage.input_tokens.toLocaleString()} input tokens`), node('span', '', `${(elapsed / 1000).toFixed(2)} s round trip`));
+    $('metrics').hidden = false; $('raw').textContent = JSON.stringify(data, null, 2); $('rawdetails').hidden = false;
+  }
+  $('examples').addEventListener('change', event => {
+    if (!event.target.value) return;
+    const item = exampleData[Number(event.target.value) - 1];
+    $('state').value = typeof item.state === 'string' ? item.state : JSON.stringify(item.state, null, 2);
+    $('questions').value = JSON.stringify(item.questions, null, 2);
+    $('answers').replaceChildren(); $('metrics').hidden = true; $('rawdetails').hidden = true; $('error').hidden = true; $('empty').hidden = false; $('status').textContent = 'Example loaded';
+  });
+  $('run').addEventListener('click', async () => {
+    $('error').hidden = true;
+    let questions;
+    try {questions = JSON.parse($('questions').value);} catch (error) {$('error').textContent = `Questions must be valid JSON: ${error.message}`; $('error').hidden = false; return;}
+    let state = $('state').value;
+    if (/^\s*[\[{]/.test(state)) {try {state = JSON.parse(state);} catch (_) {}}
+    $('run').disabled = true; $('examples').disabled = true; $('run').textContent = 'Evaluating…'; $('status').textContent = 'Running on your Mac…';
+    $('empty').hidden = true; $('answers').replaceChildren(); $('metrics').hidden = true; $('rawdetails').hidden = true;
+    const started = performance.now();
+    try {
+      const response = await fetch('/v1/systemone', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({state, questions})});
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error?.message || `Request failed (${response.status})`);
+      render(data, questions, performance.now() - started); $('status').textContent = 'Complete';
+    } catch (error) {$('error').textContent = error.message; $('error').hidden = false; $('status').textContent = 'Unable to complete';}
+    finally {$('run').disabled = !healthy; $('examples').disabled = false; $('run').textContent = 'Run decision →';}
+  });
+  async function connect() {
+    try {const response = await fetch('/health'); if (!response.ok) throw new Error(); const data = await response.json(); healthy = data.status === 'ok'; $('ready').textContent = healthy ? '● Model ready' : 'Model unavailable'; $('run').disabled = !healthy;}
+    catch (_) {$('ready').textContent = 'Server unavailable · restart start.command';}
+    try {exampleData = await (await fetch('/examples')).json(); exampleData.forEach((item, index) => {const option = node('option', '', item.name); option.value = String(index + 1); $('examples').append(option);});}
+    catch (_) {}
+  }
+  connect();
+</script>
+</body>
+</html>

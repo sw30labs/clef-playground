@@ -1,0 +1,14 @@
+.venv/
+.uv-cache/
+.hf-cache/
+model/
+__pycache__/
+*.log
+results/
+.env
+.env.*
+.DS_Store
+*.safetensors
+README.txt
+vendor/clef-8bit-README.md
+vendor/mlx-model-list.json

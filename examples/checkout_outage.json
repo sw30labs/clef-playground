@@ -1,0 +1,37 @@
+{
+  "name": "checkout_complete_outage",
+  "request": {
+    "model": "clef-local",
+    "state": "Synthetic incident: checkout is completely unavailable. Every checkout attempt fails with HTTP 503; 100% of customers are unable to place an order. No workaround is available. Browsing the product catalog works. There is no evidence of a security incident or incorrect product prices. Severity policy: level 0 = normal operation; level 1 = minor cosmetic defect with no blocked purchases; level 2 = some purchases fail but others succeed; level 3 = all purchases fail and no workaround exists.",
+    "questions": {
+      "incident_category": {
+        "type": "choice",
+        "instructions": "Classify the checkout incident using the evidence provided.",
+        "criteria": {
+          "availability": "Customers cannot use the service because it is unavailable.",
+          "pricing": "The service displays incorrect product prices.",
+          "security": "Evidence of an unauthorized intrusion or data breach."
+        }
+      },
+      "purchases_blocked": {
+        "type": "noul",
+        "instructions": "Are all customers currently unable to complete a purchase?"
+      },
+      "severity": {
+        "type": "score",
+        "instructions": "Choose the severity level defined by the incident's explicit policy.",
+        "criteria": [
+          "Normal operation.",
+          "Minor cosmetic defect with no blocked purchases.",
+          "Some purchases fail but others succeed.",
+          "All purchases fail and no workaround exists."
+        ]
+      }
+    }
+  },
+  "expected": {
+    "incident_category": "availability",
+    "purchases_blocked": true,
+    "severity": "3"
+  }
+}

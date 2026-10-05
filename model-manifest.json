@@ -1,0 +1,82 @@
+{
+  "repo_id": "mlx-community/clef-8bit",
+  "revision": "ffcdb6132b3cc94e523860321dd9ed58bc1ee9a1",
+  "files": [
+    {
+      "name": ".gitattributes",
+      "bytes": 1570
+    },
+    {
+      "name": "LICENSE",
+      "bytes": 11544
+    },
+    {
+      "name": "README.md",
+      "bytes": 8251
+    },
+    {
+      "name": "chat_template.jinja",
+      "bytes": 8952
+    },
+    {
+      "name": "clef_mlx.py",
+      "bytes": 33670
+    },
+    {
+      "name": "config.json",
+      "bytes": 5031
+    },
+    {
+      "name": "generation_config.json",
+      "bytes": 214
+    },
+    {
+      "name": "joint_head.safetensors",
+      "bytes": 256125024
+    },
+    {
+      "name": "joint_head_config.json",
+      "bytes": 119
+    },
+    {
+      "name": "model-00001-of-00006.safetensors",
+      "bytes": 5317707581
+    },
+    {
+      "name": "model-00002-of-00006.safetensors",
+      "bytes": 5354102610
+    },
+    {
+      "name": "model-00003-of-00006.safetensors",
+      "bytes": 5354184694
+    },
+    {
+      "name": "model-00004-of-00006.safetensors",
+      "bytes": 5337309653
+    },
+    {
+      "name": "model-00005-of-00006.safetensors",
+      "bytes": 5292848464
+    },
+    {
+      "name": "model-00006-of-00006.safetensors",
+      "bytes": 2845065477
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "bytes": 218281
+    },
+    {
+      "name": "processor_config.json",
+      "bytes": 1191
+    },
+    {
+      "name": "tokenizer.json",
+      "bytes": 19989339
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 1190
+    }
+  ]
+}

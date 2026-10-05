@@ -1,0 +1,36 @@
+{
+  "name": "invoice_paid_under_threshold",
+  "request": {
+    "model": "clef-local",
+    "state": "Synthetic invoice INV-100: total USD 80.00; payment status PAID; outstanding balance USD 0.00. It was paid in full before its due date. Use these rules: amounts strictly greater than USD 1000 exceed the review threshold; paid invoices need no collection action; unpaid invoices before their due date need routine collection; overdue unpaid invoices need urgent collection.",
+    "questions": {
+      "payment_status": {
+        "type": "choice",
+        "instructions": "Classify the invoice's current payment status.",
+        "criteria": {
+          "paid": "Paid in full.",
+          "unpaid_current": "Unpaid, but not yet overdue.",
+          "unpaid_overdue": "Unpaid and overdue."
+        }
+      },
+      "over_review_threshold": {
+        "type": "noul",
+        "instructions": "Is the invoice total strictly greater than USD 1000?"
+      },
+      "collection_urgency": {
+        "type": "score",
+        "instructions": "Apply the collection rules to select the urgency level.",
+        "criteria": [
+          "No collection action: the invoice is paid in full.",
+          "Routine collection: the invoice is unpaid and not overdue.",
+          "Urgent collection: the invoice is unpaid and overdue."
+        ]
+      }
+    }
+  },
+  "expected": {
+    "payment_status": "paid",
+    "over_review_threshold": false,
+    "collection_urgency": "0"
+  }
+}
